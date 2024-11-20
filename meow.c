@@ -1,12 +1,14 @@
 #include <cs50.h>
 #include <stdio.h>
 
+void meow(void)
+{
+    printf("Meow\n");
+}
 int main(void)
 {
-    int i = 3;
-    while (i > 0)
+    for (int i = 0; i < 3; i++)
     {
-        printf("miau\n");
-        i-- ;
+        meow();
     }
 }
