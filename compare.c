@@ -3,10 +3,10 @@
 
 int main(void)
 {
-    int x = get_int("What's X? ")
-    int y = get_int("What's Y? ")
+    int x = get_int("What's X? ");
+    int y = get_int("What's Y? ");
     if (x<y)
     {
-        printf("X is less than Y \n")
+        printf("X is less than Y \n");
     }
 }
