@@ -6,7 +6,7 @@ int main(void)
     int x = get_int("X: ");
     int y = get_int("Y: ");
 
-    float z = (float) x / (float) y;
+    double z = (double) x / (double) y;
     printf("%.20f\n", z);
 }
 
