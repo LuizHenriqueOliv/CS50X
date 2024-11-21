@@ -3,7 +3,7 @@
 
 int main(void)
 {
-
+    
     const int n = get_int("Size: ");
     for (int i = 0; i < n; i++)
     {
@@ -13,5 +13,4 @@ int main(void)
         }
         printf("\n");
     }
-
 }
