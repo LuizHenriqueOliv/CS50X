@@ -7,8 +7,7 @@ int main(void)
     int x = get_int("X: ");
     int y = get_int("Y: ");
 
-    int z = add(x, y);
-    printf("%i\n", z);
+    printf("%i\n", add(x, y));
 }
 
 int add(int a, int b)
