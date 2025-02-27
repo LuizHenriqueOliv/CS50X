@@ -1,7 +1,21 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int main (void)
+int main(void)
 {
-    x = get_int("")
+    int x = get_int("Whats X? ");
+    int y = get_int("Whats Y? ");
+
+    if (x < y)
+    {
+        printf("X is less than Y\n");
+    }
+    else if (x > y)
+    {
+        printf("X is greater than Y\n");
+    }
+    else
+    {
+        printf("X is equal to Y\n");
+    }
 }
