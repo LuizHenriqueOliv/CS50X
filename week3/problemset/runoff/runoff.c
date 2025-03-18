@@ -172,7 +172,7 @@ bool print_winner(void)
         }
     }
     // calcula o número mínimo de votos para vencer a eleição
-    if (highest_vote > (voter_count/2))
+    if (highest_vote > (voter_count / 2))
     {
         for (int i = 0; i < candidate_count; i++)
         {
