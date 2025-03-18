@@ -141,9 +141,9 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-       // Preencher a matriz bidimensional de acordo com o eleitor e preferência
+    // matriz preferências => preferences[e][p] = [c]
        // percorrer a matriz bidimensional verificando se determinado candidato está nela e se ele está eliminado ou não
-            // enquanto o candidato estiver eliminado, incremente o valor da preferência em +1 e refaça a verificação
+            // enquanto o candidato estiver eliminado, incremente o valor dos candidatos em +1 e refaça a verificação
 }
 
 // Print the winner of the election, if there is one
