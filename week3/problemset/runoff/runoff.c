@@ -144,7 +144,19 @@ void tabulate(void)
     // matriz preferências => preferences[e][p] = [c]
        // percorrer a matriz bidimensional verificando se determinado candidato está nela e se ele está eliminado ou não
             // enquanto o candidato estiver eliminado, incremente o valor dos candidatos em +1 e refaça a verificação
-            
+    int p;
+    for (int c = 0; c < candidate_count)
+    {
+        while (candidates[c].eliminated == true)
+        {
+            p++;
+        }
+    }
+
+    for (int e = 0; e < voter_count; e++)
+    {
+        for (int p)
+    }
 }
 
 // Print the winner of the election, if there is one
