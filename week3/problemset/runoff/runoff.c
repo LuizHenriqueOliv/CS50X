@@ -143,7 +143,7 @@ void tabulate(void)
 {
        // Preencher a matriz bidimensional de acordo com o eleitor e preferência
        // percorrer a matriz bidimensional verificando se determinado candidato está nela e se ele está eliminado ou não
-            // se estiver eliminado, incremente o valor da preferência em mais e refaça a verificação
+            // enquanto o candidato estiver eliminado, incremente o valor da preferência em +1 e refaça a verificação
 }
 
 // Print the winner of the election, if there is one
