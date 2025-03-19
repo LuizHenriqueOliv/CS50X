@@ -141,21 +141,20 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    // matriz preferências => preferences[e][p] = [c]
-       // percorrer a matriz bidimensional verificando se determinado candidato está nela e se ele está eliminado ou não
-            // enquanto o candidato estiver eliminado, incremente o valor dos candidatos em +1 e refaça a verificação
-    int p;
-    for (int c = 0; c < candidate_count)
+    int rank = 0;
+    for (int i = 0; i < voter_count; i++)
     {
-        while (candidates[c].eliminated == true)
+        for (int j = 0; j < candidate_count; j++)
         {
-            p++;
+            while (candidates[j].eliminated == true)
+            {
+                j++;
+            }
+            if (preferences[i][rank] == j)
+            {
+                candidates[j].votes += 1;
+            }
         }
-    }
-
-    for (int e = 0; e < voter_count; e++)
-    {
-        for (int p)
     }
 }
 
