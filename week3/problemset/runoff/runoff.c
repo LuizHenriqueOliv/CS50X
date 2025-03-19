@@ -213,7 +213,8 @@ bool is_tie(int min)
 // Eliminate the candidate (or candidates) in last place
 void eliminate(int min)
 {
-    // percorra a array de candidatos e mude eliminated para true aqueles que tem o nº de votos = min
+    // percorra a array de candidatos e mude eliminated para true aqueles que tem o nº de votos =
+    // min
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == min)
