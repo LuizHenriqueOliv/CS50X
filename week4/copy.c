@@ -10,15 +10,16 @@ int main(void)
 
     char *t = malloc(strlen(s) + 1);
 
-    if (t == null)
+    if (t == NULL)
     {
         return 1;
     }
 
-    for (int i = 0, n = strlen(s); i < n; i++)
-    {
-        t[i] = s[i];
-    }
+    // for (int i = 0, n = strlen(s); i < n; i++)
+    // {
+    //     t[i] = s[i];
+    // }
+    strcpy(t, s);
 
     if (strlen(t) > 0)
     {
