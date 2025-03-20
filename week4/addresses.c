@@ -5,4 +5,6 @@ int main(void)
 {
     string s = "hi!";
     printf("%p\n", s);
+    int n = 50;
+    printf("%p\n", s);
 }
