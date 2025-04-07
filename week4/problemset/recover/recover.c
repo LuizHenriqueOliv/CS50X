@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
             // criar JPEGs dos dados
             for (int i = 0; i < 512; i++)
             {
-                if ((i == 0xff) && (i + 1 == 0xd8) && (i + 2 == 0xff))
+                if ((buffer[i] == 0xff) && (buffer[i + 1] == 0xd8) && (buffer[i + 2] == 0xff))
                 {
                     counter++;
                 }
