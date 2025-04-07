@@ -11,9 +11,20 @@ int main(int argc, char *argv[])
     }
 
     // abrir o cartão de memória
-    
-        // enquanto houver dados para ler no cartão
+    FILE *card = fopen(argv[1], "r");
+    if (card == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
 
-        // criar JPEGs dos dados
+    // criar um buffer para armazenar os dados do cartão
+    uint_t buffer[512];
+        // enquanto houver dados para ler no cartão
+        while (fread(buffer, 1, 512, card) == 512);
+        {
+            // criar JPEGs dos dados
+            
+        }
 
 }
