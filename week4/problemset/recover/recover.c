@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     }
 
     // abrir o cartão de memória
-
+    
         // enquanto houver dados para ler no cartão
 
         // criar JPEGs dos dados
