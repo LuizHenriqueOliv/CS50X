@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,16 +20,16 @@ int main(int argc, char *argv[])
     }
 
     // criar um buffer para armazenar os dados do cartão
-    uint_t buffer[512];
+    uint8_t buffer[512];
     // contador de jpegs
     int counter = 0;
         // enquanto houver dados para ler no cartão
-        while (fread(buffer, 1, 512, card) == 512);
+        while (fread(buffer, 1, 512, card) == 512)
         {
             // criar JPEGs dos dados
             for (int i = 0; i < 512; i++)
             {
-                if (i == 0xff && i + 1 == 0xd8 && i + 2 = 0xff)
+                if ((i == 0xff) && (i + 1 == 0xd8) && (i + 2 == 0xff))
                 {
                     counter++;
                 }
