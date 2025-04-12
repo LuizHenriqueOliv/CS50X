@@ -15,16 +15,11 @@ int main()
 
     // time passes
 
-    int *tmp = malloc(4 * sizeof(int));
+    int *tmp = realloc(list, 4 * sizeof(int));
     if (tmp == NULL)
     {
         free(list);
         return 1;
-    }
-
-    for (int i = 0; i < 4; i++)
-    {
-        tmp[i] = list[i];
     }
 
     tmp[3] = 4;
