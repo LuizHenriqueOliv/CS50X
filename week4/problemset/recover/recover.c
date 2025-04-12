@@ -21,20 +21,40 @@ int main(int argc, char *argv[])
 
     // criar um buffer para armazenar os dados do cartão
     uint8_t buffer[512];
+
     // contador de jpegs
-    int counter = 0;
-        // enquanto houver dados para ler no cartão
-        while (fread(buffer, 1, 512, card) == 512)
+    FILE *img = NULL;
+    int file_counter = 0;
+    char filename[8];
+
+    // enquanto houver dados para ler no cartão
+    while (fread(buffer, 1, 512, card) == 512)
+    {
+        // criar JPEGs dos dados
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff &&
+            (buffer[3] & 0xf0) == 0xe0)
         {
-            // criar JPEGs dos dados
-            for (int i = 0; i < 512; i++)
+            if (img != NULL)
             {
-                if ((buffer[i] == 0xff) && (buffer[i + 1] == 0xd8) && (buffer[i + 2] == 0xff))
-                {
-                    counter++;
-                }
+                fclose(img);
             }
+            // cria o nome do arquivo e abre ele
+            sprintf(filename, "%03i.jpg", file_counter); // "muda" o nome do arquivo "filename"
+            img = fopen(filename, "w");
+            file_counter++;
         }
-    printf("%i\n", counter);
+        if (img != NULL) // ou seja, possui um valor
+        {
+            fwrite(buffer, 512, 1, img);
+        }
+    }
+
+    // fecha o último jpeg
+    if (img != NULL)
+    {
+        fclose(img);
+    }
+
+    // fechando o arquivo original
     fclose(card);
 }
