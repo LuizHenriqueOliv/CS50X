@@ -31,7 +31,15 @@ int main()
         // if list has numbers already
         else
         {
-            
+            for (node *ptr = list; ptr != NULL; prt = ptr->next);
+            {
+                // if at end of list
+                if (ptr->next = NULL)
+                {
+                    ptr->next = n;
+                    break;
+                }
+            }
         }
     }
 
