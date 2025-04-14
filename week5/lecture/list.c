@@ -19,6 +19,6 @@ int main()
             return 1;
         }
     }
-    (*n).number = get_int("Number: ");
-    (*n).next = NULL;
+    n->number = get_int("Number: ");
+    n->next = NULL;
 }
