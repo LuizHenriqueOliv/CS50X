@@ -18,9 +18,17 @@ int main()
         {
             return 1;
         }
-    }
-    n->number = get_int("Number: ");
-    n->next = list;
+        n->number = get_int("Number: ");
+        n->next = list;
 
-    list = n;
+        list = n;
+    }
+
+    //time passes
+    
+    node *ptr = list;
+    while (ptr != NULL)
+    {
+        printf("%i\n", ptr->number);
+    }
 }
