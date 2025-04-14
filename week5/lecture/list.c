@@ -19,5 +19,6 @@ int main()
             return 1;
         }
     }
+    (*n).number = get_int("Number: ");
     
 }
