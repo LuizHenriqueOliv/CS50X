@@ -23,7 +23,7 @@ int main()
         n->next = NULL;
 
         // if list is empty
-        if (list = NULL)
+        if (list == NULL)
         {
             list = n;
         }
@@ -31,10 +31,10 @@ int main()
         // if list has numbers already
         else
         {
-            for (node *ptr = list; ptr != NULL; prt = ptr->next);
+            for (node *ptr = list; ptr != NULL; ptr = ptr->next);
             {
                 // if at end of list
-                if (ptr->next = NULL)
+                if (ptr->next == NULL)
                 {
                     ptr->next = n;
                     break;
@@ -49,6 +49,6 @@ int main()
     {
         printf("%i\n", ptr->number);
     }
-    
+
     return 0;
 }
