@@ -20,5 +20,5 @@ int main()
         }
     }
     (*n).number = get_int("Number: ");
-    
+    (*n).next = NULL;
 }
