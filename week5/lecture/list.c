@@ -20,6 +20,19 @@ int main()
             return 1;
         }
         n->number = get_int("Number: ");
+        n->next = NULL;
+
+        // if list is empty
+        if (list = NULL)
+        {
+            list = n;
+        }
+
+        // if list has numbers already
+        else
+        {
+            
+        }
     }
 
     //time passes
