@@ -4,6 +4,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <string.h>
+
 #include "dictionary.h"
 
 // Represents a node in a hash table
@@ -25,7 +27,9 @@ unsigned int word_count = 0;
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
+    // 
+    unsigned int index = hash(word);
+
     return false;
 }
 
