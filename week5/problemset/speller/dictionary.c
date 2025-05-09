@@ -39,7 +39,7 @@ bool check(const char *word)
         }
         cursor = cursor->next;
     }
-    
+
     return false;
 }
 
@@ -149,6 +149,18 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    for (int i = 0; i < N; i++)
+    {
+        node *cursor = table[i];
+
+
+        while (cursor != NULL)
+        {
+            node *temp = cursor;
+            cursor = cursor->next;
+            free(temp);
+        }
+    }
+
+    return true;
 }
