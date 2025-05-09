@@ -15,7 +15,6 @@ typedef struct node
     struct node *next;
 } node;
 
-// TODO: Choose number of buckets in hash table
 const unsigned int N = 10000;
 
 // Hash table
@@ -25,6 +24,11 @@ node *table[N];
 unsigned int word_count = 0;
 
 // Returns true if word is in dictionary, else false
+int compare_case_insensitive(const char *str1, const char *str2)
+{
+    while ()
+}
+
 bool check(const char *word)
 {
     unsigned int index = hash(word);
