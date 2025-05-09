@@ -26,7 +26,10 @@ unsigned int word_count = 0;
 // Returns true if word is in dictionary, else false
 int compare_case_insensitive(const char *str1, const char *str2)
 {
-    while ()
+    while (*str1 && *str2)
+    {
+        if ()
+    }
 }
 
 bool check(const char *word)
