@@ -28,8 +28,14 @@ int compare_case_insensitive(const char *str1, const char *str2)
 {
     while (*str1 && *str2)
     {
-        if ()
+        if (tolower((unsigner char)*str1) != tolower((unsigned char)*str2))
+        {
+            return 0;
+        }
+        str1++;
+        str2++;
     }
+    return (*str1 == *str2);
 }
 
 bool check(const char *word)
@@ -40,7 +46,7 @@ bool check(const char *word)
 
     while (cursor != NULL)
     {
-        if (strcasecmp(cursor->word, word) == 0)
+        if (compare_case_insensitive)
         {
             return true;
         }
