@@ -1,9 +1,8 @@
 // Implements a dictionary's functionality
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "dictionary.h"
@@ -28,7 +27,7 @@ int compare_case_insensitive(const char *str1, const char *str2)
 {
     while (*str1 && *str2)
     {
-        if (tolower((unsigner char)*str1) != tolower((unsigned char)*str2))
+        if (tolower((unsigned char) *str1) != tolower((unsigned char) *str2))
         {
             return 0;
         }
@@ -46,7 +45,7 @@ bool check(const char *word)
 
     while (cursor != NULL)
     {
-        if (compare_case_insensitive)
+        if (compare_case_insensitive(cursor->word, word))
         {
             return true;
         }
@@ -130,23 +129,23 @@ bool load(const char *dictionary)
     {
         word[index] = '\0';
 
-            // here, i go add the word in the hash table
-            unsigned int hash_value = hash(word);
-            node *new_node = malloc(sizeof(node));
+        // here, i go add the word in the hash table
+        unsigned int hash_value = hash(word);
+        node *new_node = malloc(sizeof(node));
 
-            if (new_node == NULL)
-            {
-                fclose(source);
-                return false;
-            }
+        if (new_node == NULL)
+        {
+            fclose(source);
+            return false;
+        }
 
-            // copy words to the new node
-            strcpy(new_node->word, word);
-            new_node->next = table[hash_value];
-            table[hash_value] = new_node;
+        // copy words to the new node
+        strcpy(new_node->word, word);
+        new_node->next = table[hash_value];
+        table[hash_value] = new_node;
 
-            index = 0; // reset index to the next word
-            word_count++;
+        index = 0; // reset index to the next word
+        word_count++;
     }
     // close the dictionary file
     fclose(source);
@@ -165,7 +164,6 @@ bool unload(void)
     for (int i = 0; i < N; i++)
     {
         node *cursor = table[i];
-
 
         while (cursor != NULL)
         {
