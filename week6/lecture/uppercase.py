@@ -1,7 +1,4 @@
 before = input("Before: ")
+after = before.upper()
 
-print("After: ", end="")
-
-for c in before:
-    print(c.upper(), end="")
-print()
+print(f"After: {after}")
