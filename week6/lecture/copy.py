@@ -2,5 +2,5 @@ s = input("S: ")
 
 t = s.capitalize()
 
-print(s)
-print(t)
+print(f"S: {s}")
+print(f"T: {t}")
