@@ -1,6 +1,6 @@
 try:
     n = int(input("n: "))
     print("Integer.")
-exception:
-
+except ValueError:
+    print("not integer.")
 
