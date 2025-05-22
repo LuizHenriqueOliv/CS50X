@@ -1,7 +1,7 @@
-from cs50 import get_int
+import cs50
 
 while True:
-    height = get_int("Height: ")
+    height = cs50.get_int("Height: ")
     if height > 0:
         break
 for i in range(height):
