@@ -1,6 +1,6 @@
-n = input("N: ")
-
-if n.isnumeric():
+try:
+    n = int(input("n: "))
     print("Integer.")
-else:
-    print("Not integer")
+exception:
+
+
