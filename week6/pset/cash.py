@@ -6,7 +6,11 @@ while True:
         break
 
 n_25c = 1 % 0.25
+change -= n_25c * 0.25
+
 n_10c =
+change =
+
 n_5c =
 n_1c =
 
