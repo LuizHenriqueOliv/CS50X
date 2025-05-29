@@ -7,20 +7,16 @@ while True:
 
 change *= 100
 
-int(n_25c) = change / 25
-print(n_25c)
+n_25c = int(change / 25)
 change -= n_25c * 25
 
-n_10c = change / 10
-print(n_10c)
+n_10c = int(change / 10)
 change -= n_10c * 10
 
-n_5c = change / 5
-print(n_5c)
+n_5c = int(change / 5)
 change -= n_5c * 5
 
-n_1c = change / 1
-print(n_1c)
+n_1c = int(change / 1)
 
 total = n_25c + n_10c + n_5c + n_1c
 
