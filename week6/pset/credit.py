@@ -4,5 +4,5 @@ from cs50 import get_string
 sequencia = get_string("Informe a sequência do cartão: ")
 
 # verificar pelo algoritmo de Luhn
-
+tamanho = 
 # verificar a bandeira do cartão
