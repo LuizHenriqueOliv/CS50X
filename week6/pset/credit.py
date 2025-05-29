@@ -3,6 +3,7 @@ from cs50 import get_string
 # coletar a sequência do cartão
 card_number = get_string("Informe a sequência do cartão: ")
 soma = 0
+
 # verificar pelo algoritmo de Luhn
 for i in range(len(card_number) - 2, -1, -2):
     digit = int(card_number[i]) * 2
@@ -22,3 +23,4 @@ else:
     print("Inválido")
 
 # verificar a bandeira do cartão
+
