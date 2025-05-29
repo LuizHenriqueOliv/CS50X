@@ -17,12 +17,11 @@ for i in range(len(card_number) - 2, -1, -2):
 for i in range(len(card_number) - 1, -1, -2):
     soma += int(card_number[i])
 
-if soma % 10 == 0:
-    print("Válido")
-else:
+if not soma % 10 == 0:
     print("Inválido")
+    return
 
 # verificar a bandeira do cartão
-if card_number[0] == 3 and (card_number[1] == 4 or card_number[1] == 7) and len(card_number) - 1 == 15:
+if '3' in card_number[0] and ('4' in card_number[1] or '7' in card_number[1]) and len(card_number) == 15:
     print("AMEX")
-
+elif ()
