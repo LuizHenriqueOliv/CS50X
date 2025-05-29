@@ -7,7 +7,7 @@ while True:
 
 change *= 100
 
-n_25c = change / 25
+int(n_25c) = change / 25
 print(n_25c)
 change -= n_25c * 25
 
