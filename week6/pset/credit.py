@@ -7,7 +7,7 @@ soma = 0
 for i in range(len(card_number) - 2, 0, -2):
     digit = int(card_number[i]) * 2
     if digit > 9:
-        digit1 = digit / 10
+        digit1 = digit // 10
         digit2 = digit % 10
         soma += digit1 + digit2
     else:
