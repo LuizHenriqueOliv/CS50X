@@ -23,4 +23,6 @@ else:
     print("Inválido")
 
 # verificar a bandeira do cartão
+if card_number[0] == 3 and (card_number[1] == 4 or card_number[1] == 7) and len(card_number) - 1 == 15:
+    print("AMEX")
 
