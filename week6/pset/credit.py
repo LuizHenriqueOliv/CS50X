@@ -15,5 +15,9 @@ for i in range(len(card_number) - 2, 0, -2):
 
 for i in range(len(card_number) - 1, 1, -2):
     soma += int(card_number[i])
-    
+
+if soma % 10 == 0:
+    print("Válido")
+else:
+    print("Inválido")
 # verificar a bandeira do cartão
