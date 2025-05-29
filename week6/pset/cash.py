@@ -5,16 +5,18 @@ while True:
     if change > 0:
         break
 
-n_25c = change / 0.25
-change -= n_25c * 0.25
+change /= 100
 
-n_10c = change / 0.10
-change -= n_10c * 0.10
+n_25c = change / 25
+change -= n_25c * 25
 
-n_5c = change / 0.05
-change -= n_5c * 0.05
+n_10c = change / 10
+change -= n_10c * 10
 
-n_1c = change / 0.01
+n_5c = change / 5
+change -= n_5c * 5
+
+n_1c = change / 1
 
 total = n_25c + n_10c + n_5c + n_1c
 
