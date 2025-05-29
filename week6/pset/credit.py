@@ -4,7 +4,7 @@ from cs50 import get_string
 card_number = get_string("Informe a sequência do cartão: ")
 
 # verificar pelo algoritmo de Luhn
-for i in range(len(card_number)):
+for i in range(len(card_number), 0, -2):
     print(card_number[i])
 
 # verificar a bandeira do cartão
