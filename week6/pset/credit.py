@@ -22,6 +22,6 @@ if not soma % 10 == 0:
     return
 
 # verificar a bandeira do cartão
-if '3' in card_number[0] and ('4' in card_number[1] or '7' in card_number[1]) and len(card_number) == 15:
+if len(card_number) == 15 and card_number.startswith("34", "37"):
     print("AMEX")
 elif ()
