@@ -5,7 +5,7 @@ while True:
     if change > 0:
         break
 
-change /= 100
+change *= 100
 
 n_25c = change / 25
 change -= n_25c * 25
