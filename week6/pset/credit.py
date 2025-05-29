@@ -13,5 +13,7 @@ for i in range(len(card_number) - 2, 0, -2):
     else:
         soma += digit
 
-for i in range(len(card_number))
+for i in range(len(card_number) - 1, 1, -2):
+    soma += int(card_number[i])
+    
 # verificar a bandeira do cartão
