@@ -1,3 +1,1 @@
-SELECT title FROM movies WHERE id IN (SELECT movie_id FROM stars WHERE person_id IN (SELECT person_id FROM people WHERE name IN ('Jennifer Lawrence', 'Bradley Cooper')));
 
--- SELECT title FROM movies WHERE id IN (SELECT movie_id FROM stars WHERE person_id IN (SELECT id FROM people WHERE name = 'Jennifer Lawrence') AND (SELECT id FROM people WHERE name = 'Bradley Cooper'));
