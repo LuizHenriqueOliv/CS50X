@@ -11,15 +11,15 @@
         <script>
 
             body = document.querySelector('body');
-            document.querySelector('#red', function() {
-                body.style.backGround='red';
-            })
-            document.querySelector('#green', function() {
-                body.style.backGround='green';
-            })
-            document.querySelector('#blue', function() {
-                body.style.backGround='blue';
-            })
+            document.querySelector('#red').addEventListener('click', function() {
+                body.style.backgroundColor = 'red';
+            });
+            document.querySelector('#green').addEventListener('click', function() {
+                body.style.backgroundColor = 'green';
+            });
+            document.querySelector('#blue').addEventListener('click', function() {
+                body.style.backgroundColor = 'blue';
+            });
 
         </script>
     </body>
