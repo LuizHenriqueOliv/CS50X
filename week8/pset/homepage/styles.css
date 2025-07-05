@@ -1,0 +1,47 @@
+header {
+    margin-bottom: 5px;
+}
+
+main {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 25px
+}
+
+#aboutme {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+section {
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px gray;
+    padding: 20px;
+}
+
+img {
+    height: 225px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+footer > p {
+    text-align: center;
+}
+
+ul > li {
+    text-decoration: none;
+}
+
+#academic-backgrounds {
+    text-align: center;
+    font-size: 25px;
+}
+
+th, td {
+    border: 1px solid black;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Qual a principal linguagem de programação responsável por gerar interatividade e dinâmica em páginas WEB?</h3>
+
+                <button class="incorrect" id="option1"> HTML </button>
+                <button class="incorrect" id="option2"> CSS </button>
+                <button id="correct"> JavaScript </button>
+                <p id="feedback1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Qual a capital dos Estados Unidos?</h3>
+                <form id="form">
+                    <input name="question" type="text" id="answer">
+                    <input type="submit">
+                </form>
+                <p id="feedback2"></p>
+            </div>
+        </div>
+        <script>
+            document.querySelector('#option1').onclick = function() {
+                document.querySelector("#option1").style.backgroundColor = "red";
+                document.querySelector("#feedback1").innerHTML = "Incorrect!";
+            }
+
+            document.querySelector('#option2').onclick = function() {
+                document.querySelector("#option2").style.backgroundColor = "red";
+                document.querySelector("#feedback1").innerHTML = "Incorrect!";
+            }
+
+            document.querySelector('#correct').onclick = function() {
+                document.querySelector("#correct").style.backgroundColor = "green";
+                document.querySelector("#feedback1").innerHTML = "Correct!";
+            }
+
+            document.querySelector('#form').addEventListener("submit", function(event) {
+                event.preventDefault();
+                let answer = document.querySelector('#answer').value;
+
+                if (answer.toLowerCase() === 'washington')
+                {
+                    document.querySelector('#answer').style.backgroundColor = "green";
+                    document.querySelector('#feedback2').innerHTML = "Correct!";
+                }
+                else
+                {
+                    document.querySelector('#answer').style.backgroundColor = "red";
+                    document.querySelector('#feedback2').innerHTML = "Incorrect!";
+                }
+            });
+        </script>
+    </body>
+</html>
