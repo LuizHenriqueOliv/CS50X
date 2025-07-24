@@ -111,9 +111,9 @@ def quote():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    render_template(register.html)
-    # """Register user"""
-    # return apology("TODO")
+    return render_template("register.html")
+    """Register user"""
+    return apology("TODO")
 
 
 @app.route("/sell", methods=["GET", "POST"])
