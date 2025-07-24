@@ -115,16 +115,17 @@ def register():
         # grab username, password and password confirmed
         username_created = request.form.get("create_username")
         password_created = request.form.get("create_password")
-        password_confirmed = request.form.get("password_confirmed")
+        password_confirmed = request.form.get("confirm_password")
 
         if not username_created:
             return apology("Please, must provide a username")
         if not password_created:
             return apology("Please, must provide a password")
         if not password_confirmed:
-            return apology("Please, comfirm your password")(
+            return apology("Please, comfirm your password")
         if password_created != password_confirmed:
-            return apology("Your password is not equal password confirmed!")
+            return apology("Your password is not equal your password confirmed")
+
     else:
         return render_template("register.html")
 
