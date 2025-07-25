@@ -110,7 +110,7 @@ def quote():
         stock = lookup(symbol)
 
         if not stock:
-            return apology("We don't ")
+            return apology("The stock could not be found")
         return render_template("quoted.html", stock=stock)
     else:
         return render_template("quote.html")
