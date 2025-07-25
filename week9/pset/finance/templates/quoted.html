@@ -6,10 +6,21 @@
 
 {% block main %}
 
-    <ul>
-        <li>{{ stock.name }}</li>
-        <li>{{ stock.symbol }}</li>
-        <li>{{ stock.price }}</li>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.symbol }}</td>
+                <td> $ {{ stock.price }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 {% endblock %}
