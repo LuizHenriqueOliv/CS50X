@@ -117,6 +117,11 @@ def register():
         password_created = request.form.get("create_password")
         password_confirmed = request.form.get("confirm_password")
 
+        usernames = db.execute("SELECT * FROM users")
+        for username in usernames:
+            if username_created == username['username']:
+                return apology("This username already exist")
+
         if not username_created:
             return apology("Please, must provide a username")
         if not password_created:
@@ -125,6 +130,8 @@ def register():
             return apology("Please, comfirm your password")
         if password_created != password_confirmed:
             return apology("Your password is not equal your password confirmed")
+
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username_created, generate_password_hash(password_created))
 
     else:
         return render_template("register.html")
