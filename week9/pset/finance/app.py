@@ -109,6 +109,8 @@ def quote():
         symbol = request.form.get("symbol")
         stock = lookup(symbol)
 
+        if not stock:
+            return apology("We don't ")
         return render_template("quoted.html", stock=stock)
     else:
         return render_template("quote.html")
