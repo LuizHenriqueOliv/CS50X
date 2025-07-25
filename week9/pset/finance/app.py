@@ -108,6 +108,7 @@ def quote():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         stock = lookup(symbol)
+        print(stock)
 
         if not stock:
             return apology("The stock could not be found")
