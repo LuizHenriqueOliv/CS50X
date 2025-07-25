@@ -132,7 +132,7 @@ def register():
             return apology("Your password is not equal your password confirmed")
 
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username_created, generate_password_hash(password_created))
-
+        return redirect("/login")
 
     else:
         return render_template("register.html")
