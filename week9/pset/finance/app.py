@@ -113,9 +113,9 @@ def quote():
 def register():
     if request.method == "POST":
         # grab username, password and password confirmed
-        username_created = request.form.get("create_username")
-        password_created = request.form.get("create_password")
-        password_confirmed = request.form.get("confirm_password")
+        username_created = request.form.get("username")
+        password_created = request.form.get("password")
+        password_confirmed = request.form.get("confirmation")
 
         usernames = db.execute("SELECT * FROM users")
         for username in usernames:
@@ -132,7 +132,7 @@ def register():
             return apology("Your password is not equal your password confirmed")
 
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username_created, generate_password_hash(password_created))
-        
+
 
     else:
         return render_template("register.html")
