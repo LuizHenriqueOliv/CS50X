@@ -34,16 +34,54 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    """Show portfolio of stocks"""
-    return apology("TODO")
+    users = db.execute("SELECT * FROM users WHERE id = (?)", session["user_id"])
+    stocks = db.execute("SELECT symbol, SUM(shares) AS total_shares, price, (SUM(shares) * price) AS total FROM transactions WHERE user_id = (?) GROUP BY symbol", session["user_id"])
 
+    value_shares = db.execute("SELECT SUM(total) as value_shares FROM (SELECT (SUM(shares) * price) AS total FROM transactions WHERE user_id = (?) GROUP BY symbol)", session["user_id"])
+    if value_shares[0]["value_shares"] is None:
+        value_shares[0]["value_shares"] = 0.0
+
+    total_balance = float(value_shares[0]["value_shares"]) + float(users[0]["cash"])
+
+    return render_template("index.html", users=users, stocks=stocks, value_shares=value_shares, total_balance=total_balance)
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    """Buy shares of stock"""
-    return apology("TODO")
+    if request.method == "POST":
+        symbol = request.form.get("symbol")
+        stock = lookup(symbol)
+        shares = (request.form.get("shares"))
 
+        if not symbol:
+            return apology("Must provide a symbol")
+        if not stock:
+            return apology("Invalid symbol")
+        if not shares:
+            return apology("Must provide a shares")
+
+        shares = int(shares)
+        if shares <= 0:
+            return apology("Invalid shares")
+
+        user = db.execute("SELECT * FROM users WHERE id = (?)", session["user_id"])
+        cash = (user[0]["cash"])
+        price = int(stock["price"])
+        cost = price * shares
+
+        if cash < cost:
+            return apology("You dont have enough money")
+
+
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], stock["symbol"], shares, price, shares*price, "buy")
+
+
+        cash -= cost
+        db.execute("UPDATE users SET cash = (?) WHERE id = (?)", cash, session["user_id"])
+
+        return redirect("/")
+    else:
+        return render_template("buy.html")
 
 @app.route("/history")
 @login_required
@@ -115,8 +153,6 @@ def quote():
         return render_template("quoted.html", stock=stock)
     else:
         return render_template("quote.html")
-    """Get stock quote."""
-    return apology("TODO")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -148,12 +184,12 @@ def register():
         return render_template("register.html")
 
 
-    """Register user"""
-    return apology("TODO")
-
-
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
-    """Sell shares of stock"""
-    return apology("TODO")
+    if request.method == "POST":
+        symbol = request.form.get("symbol")
+        
+    else:
+        stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol", session["user_id"])
+        return render_template("sell.html", stocks=stocks)
