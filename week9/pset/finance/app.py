@@ -216,9 +216,9 @@ def sell():
 
         price = lookup(symbol)["price"]
         db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], symbol, -shares, price, -(shares*price), "sell")
-
-        # falta atualizar o cash do usuário pós venda
         
+        # falta atualizar o cash do usuário pós venda
+
         return redirect("/")
     else:
         stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
