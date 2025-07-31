@@ -24,7 +24,7 @@
                     <td> {{ stock.transaction_type }} </td>
                     <td> {{ stock.symbol }} </td>
                     <td> {{ stock.price }} </td>
-                    <td> {{ stock.shares }} </td>
+                    <td> {{ stock.shares | abs }} </td>
                     <td> {{ stock.timestamp }} </td>
                 </tr>
             {% endfor %}
