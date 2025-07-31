@@ -7,15 +7,15 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Hi, {{ users[0]["username"] }}!</h1>
+    <h1>Hi, {{ user[0]["username"] }}!</h1>
     <table class="table table-striped">
         <tr>
             <td>Money to invest: </td>
-            <td>{{ users[0]["cash"]|usd }}</td>
+            <td>{{ user[0]["cash"]|usd }}</td>
         </tr>
         <tr>
             <td>Value in shares: </td>
-            <td>{{ value_shares[0]["value_shares"]|usd }}</td>
+            <td>{{ value_shares|usd }}</td>
         </tr>
         <tr>
             <td>Total balance: </td>

@@ -8,15 +8,15 @@
     <form action="/sell" method="post">
         <div class="mb-3">
             <label class="form-label" for="symbol">Choose the stock you want to sell:</label>
-            <select class="form-select" name="symbol">
-                <option selected>Choose one option</option>
+            <select class="form-select" name="symbol" required>
+                <option disabled selected value="">Choose one option</option>
                 {% for stock in stocks %}
                     <option value="{{ stock.symbol }}"> {{ stock.symbol }} </option>
                 {% endfor %}
             </select>
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" type="text" name="shares" placeholder="Number of shares">
+            <input class="form-control mx-auto w-auto" required type="text" name="shares" placeholder="Number of shares">
         </div>
         <button class="btn btn-primary" type="submit">Sell</button>
     </form>

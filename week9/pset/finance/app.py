@@ -34,16 +34,25 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    users = db.execute("SELECT * FROM users WHERE id = (?)", session["user_id"])
-    stocks = db.execute("SELECT symbol, SUM(shares) AS total_shares, price, (SUM(shares) * price) AS total FROM transactions WHERE user_id = (?) GROUP BY symbol", session["user_id"])
+    user = db.execute("SELECT * FROM users WHERE id = (?)", session["user_id"])
+    stocks = db.execute("""
+        SELECT symbol, SUM(shares) AS total_shares
+        FROM transactions
+        WHERE user_id = (?)
+        GROUP BY symbol
+        HAVING total_shares > 0
+    """, session["user_id"])
+    value_shares = 0.0
 
-    value_shares = db.execute("SELECT SUM(total) as value_shares FROM (SELECT (SUM(shares) * price) AS total FROM transactions WHERE user_id = (?) GROUP BY symbol)", session["user_id"])
-    if value_shares[0]["value_shares"] is None:
-        value_shares[0]["value_shares"] = 0.0
+    for stock in stocks:
+        quote = lookup(stock["symbol"])
+        stock["price"] = quote["price"]
+        stock["total"] = stock["price"] * stock["total_shares"]
+        value_shares += stock["total"]
 
-    total_balance = float(value_shares[0]["value_shares"]) + float(users[0]["cash"])
+    total_balance = value_shares + float(user[0]["cash"])
 
-    return render_template("index.html", users=users, stocks=stocks, value_shares=value_shares, total_balance=total_balance)
+    return render_template("index.html", user=user, stocks=stocks, value_shares=value_shares, total_balance=total_balance)
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
@@ -66,7 +75,7 @@ def buy():
 
         user = db.execute("SELECT * FROM users WHERE id = (?)", session["user_id"])
         cash = (user[0]["cash"])
-        price = int(stock["price"])
+        price = float(stock["price"])
         cost = price * shares
 
         if cash < cost:
@@ -163,10 +172,9 @@ def register():
         password_created = request.form.get("password")
         password_confirmed = request.form.get("confirmation")
 
-        usernames = db.execute("SELECT * FROM users")
-        for username in usernames:
-            if username_created == username['username']:
-                return apology("This username already exist")
+        rows = db.execute("SELECT * FROM users WHERE username = (?)", username_created)
+        if rows:
+            return apology("This username already exist")
 
         if not username_created:
             return apology("Please, must provide a username")
@@ -188,8 +196,30 @@ def register():
 @login_required
 def sell():
     if request.method == "POST":
-        symbol = request.form.get("symbol")
-        
-    else:
         stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol", session["user_id"])
+
+        symbol = request.form.get("symbol")
+        if not symbol:
+            return apology("Please, choose one stock.")
+        if not any(stock["symbol"] == symbol for stock in stocks):
+            return apology("You dont have this stock")
+
+        shares = int(request.form.get("shares"))
+        if not shares:
+            return apology("Must provide shares")
+        if shares <= 0:
+            return apology("Invalid shares")
+
+        user_shares = db.execute("SELECT SUM(shares) AS user_shares FROM transactions WHERE user_id = (?) AND symbol = (?) GROUP BY symbol", session["user_id"], symbol)
+        if shares > int(user_shares[0]["user_shares"]):
+            return apology("You dont have enough stocks")
+
+        price = lookup(symbol)["price"]
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], symbol, -shares, price, -(shares*price), "sell")
+
+        # falta atualizar o cash do usuário pós venda
+        
+        return redirect("/")
+    else:
+        stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
         return render_template("sell.html", stocks=stocks)
