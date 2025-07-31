@@ -215,9 +215,11 @@ def sell():
             return apology("You dont have enough stocks")
 
         price = lookup(symbol)["price"]
-        
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], symbol, -shares, price, -(shares*price), "sell")
+        total = shares * price
 
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], symbol, -shares, price, -(total), "sell")
+
+        db.execute("UPDATE users SET cash = (?) WHERE id = (?)", )
         # falta atualizar o cash do usuário pós venda
 
         return redirect("/")
