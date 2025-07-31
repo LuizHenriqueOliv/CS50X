@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    History
+
+{% endblock %}
+
+{% block main %}
+    <h1>Transactions History</h1>
+    <table class="table table-striped">
+        <tr>
+            <td>Money to invest: </td>
+            <td>{{ user[0]["cash"]|usd }}</td>
+        </tr>
+        <tr>
+            <td>Value in shares: </td>
+            <td>{{ value_shares|usd }}</td>
+        </tr>
+        <tr>
+            <td>Total balance: </td>
+            <td>{{ total_balance|usd }}</td>
+        </tr>
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.total_shares }}</td>
+                    <td>{{ stock.price|usd }}</td>
+                    <td>{{ stock.total|usd }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

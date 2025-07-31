@@ -95,8 +95,8 @@ def buy():
 @app.route("/history")
 @login_required
 def history():
-    """Show history of transactions"""
-    return apology("TODO")
+    
+    return render_template("history.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -221,7 +221,7 @@ def sell():
         db.execute("INSERT INTO transactions (user_id, symbol, shares, price, total, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", session['user_id'], symbol, -shares, price, -(total), "sell")
         # update the user cash after sell
         db.execute("UPDATE users SET cash = cash + (?) WHERE id = (?)", total, session["user_id"])
-        
+
         return redirect("/")
     else:
         stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
