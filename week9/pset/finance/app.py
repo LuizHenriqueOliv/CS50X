@@ -69,7 +69,10 @@ def buy():
         if not shares:
             return apology("Must provide a shares")
 
-        shares = int(shares)
+        try:
+            shares = int(shares)
+        except ValueError:
+            return apology("Invalid shares")
         if shares <= 0:
             return apology("Invalid shares")
 
@@ -155,7 +158,6 @@ def quote():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         stock = lookup(symbol)
-        print(stock)
 
         if not stock:
             return apology("The stock could not be found")
@@ -197,16 +199,16 @@ def register():
 def sell():
     if request.method == "POST":
         stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol", session["user_id"])
-
         symbol = request.form.get("symbol")
         if not symbol:
             return apology("Please, choose one stock.")
         if not any(stock["symbol"] == symbol for stock in stocks):
             return apology("You dont have this stock")
 
-        shares = int(request.form.get("shares"))
-        if not shares:
-            return apology("Must provide shares")
+        try:
+            shares = int(request.form.get("shares"))
+        except ValueError:
+            return apology("Invalid Shares")
         if shares <= 0:
             return apology("Invalid shares")
 
@@ -226,3 +228,45 @@ def sell():
     else:
         stocks = db.execute("SELECT symbol FROM transactions WHERE user_id = (?) GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
         return render_template("sell.html", stocks=stocks)
+
+
+@app.route("/deposit", methods=["GET", "POST"])
+@login_required
+def deposit():
+    if request.method == "POST":
+        deposit = request.form.get("deposit")
+        if not deposit:
+            return apology("Must provide a value to deposit")
+
+        try:
+            if float(deposit) <= 0:
+                return apology("The minimum deposit is 1 dollar")
+        except ValueError:
+            return apology("Invalid value")
+
+        db.execute("UPDATE users SET cash = cash + (?) WHERE id = (?)", deposit, session["user_id"])
+        return redirect("/")
+    else:
+        return render_template("deposit.html")
+
+@app.route("/withdraw", methods=["GET", "POST"])
+@login_required
+def withdraw():
+    if request.method == "POST":
+        withdraw = request.form.get("withdraw")
+        if not withdraw:
+            return apology("Must provide a value to withdraw")
+        try:
+            if float(withdraw) <= 0:
+                return apology("The minimum to withdraw is 1 dollar")
+        except ValueError:
+            return apology("Invalid Value")
+
+        user_cash = db.execute("SELECT cash FROM users WHERE id = (?)", session["user_id"])
+        if float(withdraw) > float(user_cash[0]["cash"]):
+            return apology("You dont have this money to withdraw")
+
+        db.execute("UPDATE users SET cash = cash - (?) WHERE id = (?)", withdraw, session["user_id"])
+        return redirect("/")
+    else:
+        return render_template("withdraw.html")
