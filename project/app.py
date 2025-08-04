@@ -3,14 +3,12 @@ from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 from cs50 import SQL
 from helpers import login_required
-import secrets
 
 app = Flask(__name__)
 
 # session config
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.secret_key = secrets.token_hex(16)
 Session(app)
 
 # connect database
