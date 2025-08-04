@@ -53,6 +53,12 @@ def login():
     session.clear()
 
     if request.method == "POST":
-        return "TODO"
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username or password:
+            return "Preencha todos os campos"
+
+        
     else:
         return render_template("login.html")
