@@ -59,6 +59,10 @@ def login():
         if not username or password:
             return "Preencha todos os campos"
 
-        
+        user = db.execute("SELECT * FROM users WHERE username = (?)", username)
+        if len(user) != 1 or not check_password_hash(user[0]["hash"], password):
+            return "Usuário e/ou Senha inválida"
+
+        return redirect("/")
     else:
         return render_template("login.html")
