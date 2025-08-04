@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 from cs50 import SQL
+from helpers import login_required
 import secrets
 
 app = Flask(__name__)
@@ -15,13 +16,10 @@ Session(app)
 # connect database
 db = SQL("sqlite:///vault.db")
 
-def login_required(f):
-    
 
 @app.route("/")
+@login_required
 def index():
-    if "user_id" not in session:
-        return redirect("/login")
     return "usuário logado"
 
 
