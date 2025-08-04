@@ -19,7 +19,7 @@ def index():
     if "user_id" not in Session:
         return redirect("/login")
     return "usuário logado"
-    
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -56,7 +56,7 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        if not username or password:
+        if not username or not password:
             return "Preencha todos os campos"
 
         user = db.execute("SELECT * FROM users WHERE username = (?)", username)
