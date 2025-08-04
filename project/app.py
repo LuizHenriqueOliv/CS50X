@@ -16,7 +16,7 @@ db = SQL("sqlite:///vault.db")
 
 @app.route("/")
 def index():
-    if "user_id" not in Session:
+    if "user_id" not in session:
         return redirect("/login")
     return "usuário logado"
 
