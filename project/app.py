@@ -31,6 +31,9 @@ def register():
         if not username or not password or not password_confirm:
             return "Preencha todos os campos"
 
+        if password != password_confirm:
+            return "Confirme sua senha corretamente"
+        
         hash_ = generate_password_hash(password)
 
         return "Usuário cadastrado com sucesso"
