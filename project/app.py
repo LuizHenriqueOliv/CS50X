@@ -65,6 +65,8 @@ def login():
         if len(user) != 1 or not check_password_hash(user[0]["hash"], password):
             return "Usuário e/ou Senha inválida"
 
+
+        session["user_id"] = user[0]["id"]
         return redirect("/")
     else:
         return render_template("login.html")
