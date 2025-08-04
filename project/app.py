@@ -41,7 +41,13 @@ def register():
         except:
             return "Este usuário já existe."
 
-        return "Usuário cadastrado com sucesso"
+        user = db.execute("SELECT id FROM users WHERE username = (?)", username)
+        session["user_id"] = user[0]["id"]
+        return redirect("/")
 
     else:
         return render_template("register.html")
+
+@app.route("/login")
+def login():
+    
