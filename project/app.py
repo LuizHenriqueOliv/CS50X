@@ -15,6 +15,8 @@ Session(app)
 # connect database
 db = SQL("sqlite:///vault.db")
 
+def login_required(f):
+    
 
 @app.route("/")
 def index():
