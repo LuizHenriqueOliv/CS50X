@@ -19,7 +19,7 @@ def index():
     if "user_id" not in Session:
         return redirect("/login")
     return "usuário logado"
-
+                
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
