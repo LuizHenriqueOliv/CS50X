@@ -37,7 +37,7 @@ def register():
         hash_ = generate_password_hash(password)
 
         try:
-            db.execute("INSERT INTO users (username, hash) VALUES ((?), (?))" username, hash_)
+            db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash_)
         except:
             return "Este usuário já existe."
 
