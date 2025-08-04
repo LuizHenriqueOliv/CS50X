@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cadastro
+{% endblock %}
+
+{% block main %}
+
+    <h1>Cadastre-se</h1>
+    <form action="/register" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="text" name="password_confirm">
+    </form>
+
+{% endblock %}
