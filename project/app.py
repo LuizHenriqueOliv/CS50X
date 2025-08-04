@@ -24,6 +24,16 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        return "TODO"
+        username = request.form.get("username")
+        password = request.form.get("password")
+        password_confirm = request.form.get("password_confirm")
+
+        if not username or not password or not password_confirm:
+            return "Preencha todos os campos"
+
+        hash_ = generate_password_hash(password)
+
+        return "Usuário cadastrado com sucesso"
+
     else:
         return render_template("register.html")
