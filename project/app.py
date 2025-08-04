@@ -16,7 +16,7 @@ db = SQL("sqlite:///vault.db")
 
 @app.route("/")
 def index():
-    if "user_id" not in session:
+    if "user_id" not in Session:
         return redirect("/login")
     return "usuário logado"
 
@@ -50,7 +50,7 @@ def register():
 
 @app.route("/login")
 def login():
-    session.clear()
+    Session.clear()
 
     if request.method == "POST":
         return "TODO"
