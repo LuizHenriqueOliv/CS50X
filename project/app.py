@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 from cs50 import SQL
@@ -42,13 +42,13 @@ def register():
             return "Este usuário já existe."
 
         user = db.execute("SELECT id FROM users WHERE username = (?)", username)
-        Session["user_id"] = user[0]["id"]
+        session["user_id"] = user[0]["id"]
         return redirect("/")
 
     else:
         return render_template("register.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     session.clear()
 
