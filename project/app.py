@@ -33,8 +33,13 @@ def register():
 
         if password != password_confirm:
             return "Confirme sua senha corretamente"
-        
+
         hash_ = generate_password_hash(password)
+
+        try:
+            db.execute("INSERT INTO users (username, hash) VALUES ((?), (?))" username, hash_)
+        except:
+            return "Este usuário já existe."
 
         return "Usuário cadastrado com sucesso"
 
