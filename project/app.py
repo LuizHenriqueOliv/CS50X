@@ -42,7 +42,7 @@ def register():
             return "Este usuário já existe."
 
         user = db.execute("SELECT id FROM users WHERE username = (?)", username)
-        session["user_id"] = user[0]["id"]
+        Session["user_id"] = user[0]["id"]
         return redirect("/")
 
     else:
