@@ -50,4 +50,9 @@ def register():
 
 @app.route("/login")
 def login():
-    
+    session.clear()
+
+    if request.method == "POST":
+        return "TODO"
+    else:
+        return render_template("login.html")
