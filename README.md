@@ -8,6 +8,7 @@ O CS50 é um dos cursos introdutórios de ciência da computação mais renomado
 
 - **C**
 - **Python**
+- **Flask**
 - **HTML**
 - **CSS**
 - **JavaScript**
