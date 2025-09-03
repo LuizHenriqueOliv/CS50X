@@ -18,7 +18,7 @@ O CS50 é um dos cursos introdutórios de ciência da computação mais renomado
 
 Os arquivos e pastas estão organizados conforme os módulos e projetos do curso. Exemplos de conteúdos:
 
-- **Lab assignments**: Pequenos laboratórios para prática rápida.
+- **Week's**: Palestras, programas e um conteúdo novo a cada semana.
 - **Problem sets**: Exercícios semanais que consolidam o conteúdo teórico.
 - **Final project**: Projeto final aplicando os conceitos aprendidos.
 
